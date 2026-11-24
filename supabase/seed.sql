@@ -1,0 +1,46 @@
+-- Places and activities exported from the original map. Run after schema.sql.
+insert into public.places (id,name,cat,descr,url,lat,lng,by_name,created_by) values
+  ('azalee','Azalee','bar','Johan''s local pub, on Claesgatan in Möllevången.',null,55.590145,13.00836,'Claude',null),
+  ('bobo','Bar Bobo','bar','Bar at Karlshamnsgatan 1, on Karlskronaplan.',null,55.592932,13.017611,'Claude',null),
+  ('bullen','Bullen','bar','Old-school pub on Storgatan with wood panelling and hearty Swedish food.',null,55.600027,13.001498,'Claude',null),
+  ('disgusting-food-museum','Disgusting Food Museum','weird','Smell surströmming, taste durian and meet maggot cheese. Your ticket is a sick bag. Check opening hours before you go.',null,55.600893,13.001309,'Claude',null),
+  ('drottningtorget-x42x','Drottningtorget','sight','A nice square with nice buildings',null,55.608005,13.010241,'Karl',null),
+  ('fagans','Fagans','bar','Irish pub on Per Weijersgatan in Gamla Staden.',null,55.603698,13.000318,'Claude',null),
+  ('falafel-street-3plz','Falafel Street','bar','All the Falafel in Malmö',null,55.593208,13.007863,'Karl',null),
+  ('family-pub','Family Pub','bar','Pub at Nobelvägen 52, near Karlskronaplan.',null,55.593636,13.020288,'Claude',null),
+  ('far-i-hatten','Far i Hatten','bar','Bar and stage inside Folkets Park. DJs, gigs and a big outdoor area.',null,55.592591,13.014234,'Claude',null),
+  ('fir','Fir','bar','Bar on Karlshamnsgatan, right by Karlskronaplan.',null,55.592509,13.017382,'Claude',null),
+  ('folkets-park','Folkets Park','outdoors','Sweden''s oldest people''s park (1893). Bars, a playground, mini golf and a dance pavilion.',null,55.59337,13.013861,'Claude',null),
+  ('gustav-adolfs-torg','Christmas market, Gustav Adolfs torg','xmas','Seasonal market stalls with glögg, pepparkakor and gifts. Check this year''s dates before you go.',null,55.6027,13.001238,'Claude',null),
+  ('ice-skating-rink-y9x1','Ice Skating Rink','xmas','Go ice skating or play hockey',null,55.59216,13.013871,'Karl',null),
+  ('inkonst','Inkonst','bar','Culture house and club on Bergsgatan with good nightlife.',null,55.594045,13.007851,'Claude',null),
+  ('kallbadhus','Ribersborgs Kallbadhus','weird','Wooden 1898 bathhouse on stilts in the sea. Wood-fired sauna, then a naked plunge into the icy Öresund. Locals call it Kallis.','https://ribersborgskallbadhus.se',55.605219,12.96572,'Claude',null),
+  ('karlskronaplan','Karlskronaplan','bar','Bar area around the square on the Möllan / Sorgenfri border. Several bars within a minute''s walk.',null,55.593229,13.017714,'Claude',null),
+  ('kungsgatanparken','Kungsgatan Park','outdoors','Tree-lined park strip running down the middle of Kungsgatan in Rörsjöstaden.',null,55.603228,13.014787,'Claude',null),
+  ('lilla-torg','Lilla Torg','sight','Cobbled 16th-century square packed with bars and outdoor heaters. The classic first stop of any night out.',null,55.605091,12.998774,'Claude',null),
+  ('malmo-live','Malmö Live','sight','Concert hall and hotel tower. The skybar on the top floor has a view over the Öresund bridge.',null,55.607303,12.993626,'Claude',null),
+  ('malmohus','Malmöhus Castle','sight','Renaissance castle with a moat, now home to the city museums, an aquarium and a nocturnal hall.',null,55.605478,12.986496,'Claude',null),
+  ('miss-vietnam-gk6n','Miss Vietnam','food','Best Vietnamese in town according to Johan. Johan will invite you for glögg afterwards, he lives there.',null,55.591812,13.005563,'Karl',null),
+  ('mitt-mollan','Mitt Möllan','food','Indoor market hall with street-food stalls from all over the world.',null,55.589779,13.008713,'Claude',null),
+  ('moderna-museet','Moderna Museet Malmö','sight','Modern and contemporary art in an old electricity plant with a bright orange perforated extension.',null,55.604632,13.009568,'Claude',null),
+  ('mollevangstorget','Möllevångstorget','food','Möllan''s market square. Cheap veg in the day, falafel and late bars at night.',null,55.591661,13.008121,'Claude',null),
+  ('oasen-cxfu','Oasen','weird','Cool plant store run by an old lady with a big dog',null,55.607769,13.009343,'Karl',null),
+  ('olkafeet','Ölkaféet','bar','Pub at Södra Skolgatan 43 in Möllevången.',null,55.592361,13.006415,'Claude',null),
+  ('pildammsparken','Pildammsparken','outdoors','Big park around a water reservoir. Good for a frosty morning walk to shake off the night.',null,55.590587,12.991573,'Claude',null),
+  ('plan-b','Plan B','bar','Club in the Sofielund industrial area with good nightlife.',null,55.583941,13.02725,'Claude',null),
+  ('rex','Rex','bar','Bar and restaurant at Nobelvägen 107, near Karlskronaplan.',null,55.593653,13.020928,'Claude',null),
+  ('saluhall','Malmö Saluhall','food','Food hall in an old goods depot: pizza, ramen, coffee, cheese and natural wine under one roof.',null,55.60786,12.990966,'Claude',null),
+  ('stortorget','Stortorget Christmas tree','xmas','The main square gets the city''s big Christmas tree and lights every December.',null,55.60612,13.000622,'Claude',null),
+  ('tallriken-kyqy','Tallriken','sight','A unique park experience dating back to 1927, part of the Baltic Exhibition, in honor of our late queen.',null,55.590061,12.988658,'Karl',null),
+  ('turning-torso','Turning Torso','sight','Santiago Calatrava''s twisting 190 m tower in Västra Hamnen. Nine cubes, a 90° twist, best seen from the beach at sunset.',null,55.613327,12.976335,'Claude',null),
+  ('varnhemstorget-83cu','Värnhemstorget','weird','A weird square, with weird people and should likely not be visited after 10pm (or after dark)',null,55.605661,13.023098,'Karl',null),
+  ('ved','V.E.D','bar','Karl''s local bar, on Kristianstadsgatan in Möllevången.',null,55.59249,13.008764,'Claude',null)
+on conflict (id) do nothing;
+
+insert into public.activities (id,title,note,place_id,by_name,created_by) values
+  ('sauna-dip','Sauna and an icy sea dip at Kallis','Bring a towel and some courage. The sauna is wood-fired.','kallbadhus','Claude',null),
+  ('glogg-crawl','Glögg crawl through the Christmas market','Score each stall''s glögg out of 10.','gustav-adolfs-torg','Claude',null),
+  ('brew-tasting','Beer tasting at Malmö Brygghus','','malmo-brygghus','Claude',null),
+  ('gross-dare','Dare each other at the Disgusting Food Museum','Last one to taste the surströmming buys the next round.','disgusting-food-museum','Claude',null),
+  ('saluhall-lunch','Long lunch at Saluhall','Everyone picks a different stall and we share.','saluhall','Claude',null)
+on conflict (id) do nothing;
