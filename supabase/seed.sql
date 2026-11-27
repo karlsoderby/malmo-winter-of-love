@@ -40,7 +40,7 @@ on conflict (id) do nothing;
 insert into public.activities (id,title,note,place_id,by_name,created_by) values
   ('sauna-dip','Sauna and an icy sea dip at Kallis','Bring a towel and some courage. The sauna is wood-fired.','kallbadhus','Claude',null),
   ('glogg-crawl','Glögg crawl through the Christmas market','Score each stall''s glögg out of 10.','gustav-adolfs-torg','Claude',null),
-  ('brew-tasting','Beer tasting at Malmö Brygghus','','malmo-brygghus','Claude',null),
+  ('brew-tasting','Beer tasting at Malmö Brygghus','',null,'Claude',null),
   ('gross-dare','Dare each other at the Disgusting Food Museum','Last one to taste the surströmming buys the next round.','disgusting-food-museum','Claude',null),
   ('saluhall-lunch','Long lunch at Saluhall','Everyone picks a different stall and we share.','saluhall','Claude',null)
 on conflict (id) do nothing;
