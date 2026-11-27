@@ -138,6 +138,11 @@ textarea{min-height:70px;resize:vertical}
 .bauble .ball{position:absolute;left:1px;top:6px;width:32px;height:32px;border-radius:50%;background:
   radial-gradient(circle at 32% 30%,rgba(255,255,255,.75) 0 4px,transparent 5px),var(--c);border:3px solid var(--night);display:grid;place-items:center}
 .bauble svg{width:16px;height:16px;fill:none;stroke:var(--night);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.bauble.special{width:56px;height:66px;filter:drop-shadow(0 4px 0 rgba(0,0,0,.5)) drop-shadow(0 0 10px rgba(0,151,157,.8))}
+.bauble.special .cap{left:21px;width:14px;height:10px}
+.bauble.special .ball{left:2px;top:9px;width:52px;height:52px;border:4px solid #00979d;box-shadow:0 0 0 3px var(--night);
+  background:radial-gradient(circle at 30% 26%,#fff 0 5px,transparent 6px),#f4fbfb}
+.bauble.special svg{width:44px;height:22px;stroke:#00979d;stroke-width:3.2}
 .bauble .count{position:absolute;right:-6px;top:0;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--cream);color:var(--night);
   font:700 11px/18px var(--body);text-align:center}
 .leaflet-popup-content-wrapper{background:var(--night-2);color:var(--cream);border-radius:20px;border:3px solid var(--c,var(--pink))}
@@ -314,8 +319,14 @@ function voteCount(id){let n=0;for(const v of S.votes)if(v.item_id===id)n++;retu
 function voters(id){return S.votes.filter(v=>v.item_id===id).map(v=>str(v.name,40)||"Someone")}
 function iMine(id){return S.votes.some(v=>v.user_id===S.uid&&v.item_id===id)}
 
+const SPECIAL={"the-office-v5x2":"arduino"};
+const ARDUINO_SVG='<svg viewBox="0 0 48 24" aria-hidden="true"><path d="M24 12C20 4.5 5 4 5 12s15 7.5 19 0 19-8 19 0-15 7.5-19 0z"/><path d="M9.5 12h7M31 12h7M34.5 8.5v7"/></svg>';
 function bauble(p){
   const c=cat(p.cat),n=voteCount("p:"+p.id);
+  if(SPECIAL[p.id]==="arduino"){
+    const html='<div class="bauble special"><div class="cap"></div><div class="ball">'+ARDUINO_SVG+'</div>'+(n?'<div class="count">'+n+'</div>':'')+'</div>';
+    return L.divIcon({html,className:"",iconSize:[56,66],iconAnchor:[28,63],popupAnchor:[0,-58]});
+  }
   const html='<div class="bauble" style="--c:'+c.c+'"><div class="cap"></div><div class="ball"><svg viewBox="0 0 24 24">'+c.icon+'</svg></div>'+(n?'<div class="count">'+n+'</div>':'')+'</div>';
   return L.divIcon({html,className:"",iconSize:[34,42],iconAnchor:[17,40],popupAnchor:[0,-36]});
 }
@@ -359,7 +370,7 @@ function renderMarkers(){
     if(!isFinite(p.lat)||!isFinite(p.lng))continue;
     seen.add(p.id);
     let m=markers[p.id];
-    if(!m){m=L.marker([p.lat,p.lng],{title:str(p.name,80),keyboard:true});m.addTo(markerLayer);markers[p.id]=m;
+    if(!m){m=L.marker([p.lat,p.lng],{title:str(p.name,80),keyboard:true,zIndexOffset:SPECIAL[p.id]?1000:0});m.addTo(markerLayer);markers[p.id]=m;
       m.on("popupopen",e=>{openId=p.id;const q=S.places.find(x=>x.id===p.id);e.popup._container&&e.popup._container.style.setProperty("--c",cat(q&&q.cat).c)});m.on("popupclose",()=>{if(openId===p.id)openId=null});}
     m.setLatLng([p.lat,p.lng]);m.setIcon(bauble(p));
     const content=popupFor(p);
